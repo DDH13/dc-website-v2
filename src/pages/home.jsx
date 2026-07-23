@@ -186,7 +186,7 @@ function HomePage() {
                     }}
                 />
                 <Typography className="about-caption" sx={{ fontFamily: 'Montserrat, sans-serif' }}>
-                    (LEFT TO RIGHT): SHRUTHIKA PRATHAPAN, JAYAGEETH BASNAYAKE, NAVIDI PERERA, DANIEL VICTOR (PRESIDENT), SHAKEEB MOHIDEEN (TREASURER), GAVIN SENARATNE (SECRETARY), SANITHMA JAYASOORIYA.
+                    (LEFT TO RIGHT): SHRUTHIKA PRATHAPAN • JAYAGEETH BASNAYAKE • NAVIDI PERERA • DANIEL VICTOR (PRESIDENT) • SHAKEEB MOHIDEEN (TREASURER) • GAVIN SENARATNE (SECRETARY) • SANITHMA JAYASOORIYA
                 </Typography>
             </Box>
         </>

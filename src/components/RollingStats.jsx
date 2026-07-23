@@ -14,13 +14,13 @@ const stats = [
     },
     {
         icon: <GroupsIcon sx={{ fontSize: 50, color: '#8B0000' }} />,
-        value: 5000,
+        value: 300,
         label: "Debaters Impacted",
         suffix: "+"
     },
     {
         icon: <SchoolIcon sx={{ fontSize: 50, color: '#8B0000' }} />,
-        value: 30,
+        value: 40,
         label: "Schools Participating",
         suffix: "+"
     }
@@ -64,6 +64,7 @@ const RollingStats = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                position: "relative",
                 borderTop: "1px solid rgba(255, 255, 255, 0.1)",
                 borderBottom: "1px solid rgba(255, 255, 255, 0.1)"
             }}
@@ -79,46 +80,62 @@ const RollingStats = () => {
                     px: 4
                 }}
             >
-                {stats.map((stat, index) => (
-                    <Box
-                        key={index}
-                        sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "center",
-                            gap: 2,
-                            flex: 1
-                        }}
-                    >
-                        {stat.icon}
-                        <Typography
-                            variant="h2"
+                    {stats.map((stat, index) => (
+                        <Box
+                            key={index}
                             sx={{
-                                fontFamily: "Montserrat, sans-serif",
-                                fontWeight: 800,
-                                fontSize: { xs: "2.5rem", md: "3.5rem" },
-                                color: "#FFFFFF",
-                                lineHeight: 1
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "center",
+                                gap: 2,
+                                flex: 1
                             }}
                         >
-                            <Counter value={stat.value} suffix={stat.suffix} />
-                        </Typography>
-                        <Typography
-                            variant="h6"
-                            sx={{
-                                fontFamily: "Montserrat, sans-serif",
-                                fontWeight: 500,
-                                color: "#888888",
-                                textTransform: "uppercase",
-                                letterSpacing: "1px",
-                                fontSize: "1rem"
-                            }}
-                        >
-                            {stat.label}
-                        </Typography>
-                    </Box>
-                ))}
+                            {stat.icon}
+                            <Typography
+                                variant="h2"
+                                sx={{
+                                    fontFamily: "Montserrat, sans-serif",
+                                    fontWeight: 800,
+                                    fontSize: { xs: "2.5rem", md: "3.5rem" },
+                                    color: "#FFFFFF",
+                                    lineHeight: 1
+                                }}
+                            >
+                                <Counter value={stat.value} suffix={stat.suffix} />
+                            </Typography>
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    fontFamily: "Montserrat, sans-serif",
+                                    fontWeight: 500,
+                                    color: "#888888",
+                                    textTransform: "uppercase",
+                                    letterSpacing: "1px",
+                                    fontSize: "1rem"
+                                }}
+                            >
+                                {stat.label}
+                            </Typography>
+                        </Box>
+                    ))}
             </Box>
+            <Typography 
+                variant="h5" 
+                sx={{ 
+                    position: "absolute",
+                    bottom: { xs: "2rem", md: "3rem" },
+                    fontFamily: "Montserrat, sans-serif",
+                    fontWeight: 700,
+                    color: "#FFFFFF",
+                    letterSpacing: "4px",
+                    textTransform: "uppercase",
+                    fontSize: { xs: "1.2rem", md: "1.5rem" },
+                    opacity: 0.8
+                }}
+            >
+                IN 2025
+            </Typography>
         </Box>
     );
 };
