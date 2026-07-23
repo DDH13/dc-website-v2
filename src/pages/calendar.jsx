@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import AnimatedPlasma from '../components/AnimatedPlasma';
 
 function CalendarPage() {
     useEffect(() => {
@@ -26,10 +27,30 @@ function CalendarPage() {
         <Box sx={styles.container}>
             {/* Header */}
             <Box sx={styles.header}>
-                <Typography component="h1" sx={styles.title}>DC Calendar</Typography>
+                <Box sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    zIndex: 0
+                }}>
+                    <AnimatedPlasma
+                        color1="#8B0000"
+                        color2="#250000"
+                        color3="#000000"
+                        scale={0.75}
+                        speed={0.3}
+                        distortion={0.5}
+                        swirl={0.6}
+                    />
+                </Box>
+                <Box sx={{ position: 'relative', zIndex: 1 }}>
+                    <Typography component="h1" sx={styles.title}>DC Calendar</Typography>
                 <Typography sx={styles.subtitle}>
                     This calendar depicts all the scheduled DC events for the year. If your institution is organising a tournament please contact <Box component="a" href="mailto:debaterscouncil@gmail.com" sx={{ color: '#ff4d4d', textDecoration: 'underline', '&:hover': { color: '#ff7b7b' } }}>debaterscouncil@gmail.com</Box> to reserve a date.
                 </Typography>
+                </Box>
             </Box>
 
             {/* Main Content */}
@@ -55,10 +76,8 @@ const styles = {
         fontFamily: 'Montserrat, sans-serif',
     },
     header: {
-        backgroundImage: 'var(--hero-gradient)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
+        position: 'relative',
+        overflow: 'hidden',
         padding: { xs: '3rem 1.5rem', md: '4rem 2rem' },
         borderBottom: '1px solid #222',
         textAlign: 'center',

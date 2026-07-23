@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import Collapse from '@mui/material/Collapse';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import AnimatedPlasma from '../components/AnimatedPlasma';
 
 const InformationHub = () => {
   const [activeSection, setActiveSection] = useState('getting-started');
@@ -361,10 +362,30 @@ If your club is interested in a workshop, please contact us at debaterscouncil@g
     <Box sx={styles.container}>
       {/* Header */}
       <Box sx={styles.header}>
-        <Typography component="h1" sx={styles.title}>Information & Resources</Typography>
-        <Typography sx={styles.subtitle}>
-          Everything you need to know about the Debaters' Council, tournaments, and competitive debate in Sri Lanka
-        </Typography>
+        <Box sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 0
+        }}>
+            <AnimatedPlasma
+                color1="#8B0000"
+                color2="#250000"
+                color3="#000000"
+                scale={0.75}
+                speed={0.3}
+                distortion={0.5}
+                swirl={0.6}
+            />
+        </Box>
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
+          <Typography component="h1" sx={styles.title}>Information & Resources</Typography>
+          <Typography sx={styles.subtitle}>
+            Everything you need to know about the Debaters' Council, tournaments, and competitive debate in Sri Lanka
+          </Typography>
+        </Box>
       </Box>
 
       {/* Main Content Wrappers */}
@@ -480,10 +501,8 @@ const styles = {
     fontFamily: 'Montserrat, sans-serif',
   },
   header: {
-    backgroundImage: 'var(--hero-gradient)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundAttachment: 'fixed',
+    position: 'relative',
+    overflow: 'hidden',
     padding: { xs: '3rem 1.5rem', md: '4rem 2rem' },
     borderBottom: '1px solid #222',
     textAlign: 'center',
