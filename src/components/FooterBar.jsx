@@ -65,19 +65,19 @@ function FooterBar() {
                 {/* Left: Social Icons */}
                 <Box id="social-footer" sx={{ display: 'flex', alignItems: 'center', gap: 3, flexDirection: { xs: 'column', sm: 'row' } }}>
                     <Box sx={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                        <Link href="https://facebook.com" target="_blank" rel="noopener noreferrer" sx={{ display: 'flex' }}>
+                        <Link href="https://www.facebook.com/DebatersCouncilSriLanka/" target="_blank" rel="noopener noreferrer" sx={{ display: 'flex' }}>
                             <Box component={FaFacebookF} sx={iconStyle} />
                         </Link>
-                        <Link href="https://instagram.com" target="_blank" rel="noopener noreferrer" sx={{ display: 'flex' }}>
+                        <Link href="https://www.instagram.com/debaterscouncil/" target="_blank" rel="noopener noreferrer" sx={{ display: 'flex' }}>
                             <Box component={FaInstagram} sx={iconStyle} />
                         </Link>
-                        <Link href="https://twitter.com" target="_blank" rel="noopener noreferrer" sx={{ display: 'flex' }}>
+                        <Link href="https://twitter.com/debaterscouncil" target="_blank" rel="noopener noreferrer" sx={{ display: 'flex' }}>
                             <Box component={FaTwitter} sx={iconStyle} />
                         </Link>
-                        <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" sx={{ display: 'flex' }}>
+                        <Link href="https://www.linkedin.com/company/debaters-council-sri-lanka" target="_blank" rel="noopener noreferrer" sx={{ display: 'flex' }}>
                             <Box component={FaLinkedinIn} sx={iconStyle} />
                         </Link>
-                        <Link href="https://youtube.com" target="_blank" rel="noopener noreferrer" sx={{ display: 'flex' }}>
+                        <Link href="https://www.youtube.com/@debaterscouncil-srilanka6367" target="_blank" rel="noopener noreferrer" sx={{ display: 'flex' }}>
                             <Box component={FaYoutube} sx={iconStyle} />
                         </Link>
                     </Box>
