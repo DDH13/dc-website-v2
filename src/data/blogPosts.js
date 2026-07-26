@@ -1,4 +1,5 @@
 import oldhamImage from '../assets/blog/oldham-cup.png';
+import newsletterPdf from './Newsletter_WIP_20260725_082547_0000_compressed.pdf';
 
 export const blogPosts = [
   {
@@ -90,5 +91,17 @@ With preparations well underway for the World Schools Debating Championship (WSD
     readTime: '3 min',
     image: oldhamImage,
     featured: false,
+  },
+  {
+    id: 9,
+    title: 'Newsletter from the Archives',
+    excerpt: 'Catch up on all the latest updates, achievements, and upcoming events in our July 2026 newsletter.',
+    category: 'Announcements',
+    author: 'Debaters Council',
+    date: '2025-01-01',
+    readTime: '10 min',
+    image: 'https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=800&h=500&fit=crop',
+    featured: false,
+    pdf: newsletterPdf
   }
 ];

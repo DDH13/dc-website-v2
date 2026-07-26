@@ -60,7 +60,11 @@ function ArticlePage() {
                 </Box>
 
                 <Box sx={{ fontSize: '1.1rem', lineHeight: 1.8, color: '#e0e0e0' }}>
-                    {post.content ? (
+                    {post.pdf ? (
+                        <Box sx={{ width: '100%', height: '80vh', minHeight: '600px', mb: 4, borderRadius: '8px', overflow: 'hidden' }}>
+                            <iframe src={post.pdf} width="100%" height="100%" style={{ border: 'none' }} title={post.title} />
+                        </Box>
+                    ) : post.content ? (
                         post.content.split('\n').filter(p => p.trim() !== '').map((paragraph, i) => (
                             <Typography key={i} sx={{ fontFamily: 'Montserrat', fontSize: '1.1rem', lineHeight: 1.8, mb: 3, color: '#e0e0e0', whiteSpace: 'pre-wrap' }}>
                                 {paragraph}
