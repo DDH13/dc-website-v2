@@ -124,6 +124,7 @@ export default function LeagueCarousel() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const dragStartX = useRef(0);
+    const dragActive = useRef(false);
     const timerRef = useRef(null);
     const containerRef = useRef(null);
     const isInView = useInView(containerRef, { once: false, amount: 0.5 });
@@ -165,11 +166,13 @@ export default function LeagueCarousel() {
 
     const handlePointerDown = e => {
         dragStartX.current = e.clientX;
+        dragActive.current = true;
         startTransition(() => setIsDragging(true));
     };
 
     const handlePointerUp = e => {
-        if (!isDragging) return;
+        if (!dragActive.current) return;
+        dragActive.current = false;
         const diff = e.clientX - dragStartX.current;
         if (Math.abs(diff) > 50) {
             if (diff > 0) prevSlide();
