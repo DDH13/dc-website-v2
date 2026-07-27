@@ -49,7 +49,7 @@ const DEFAULT_PROPS = {
 };
 
 const TEAM_MEMBERS = {
-    "2026": ["LR Seated: Thahira Saheed (Reserve)", "Savith Wijesundara", "Apoorva Jinadasa", "LR Standing: T. Tharaniharan", "Adam Dhilshan", "Rudesh Ram"],
+    "2026": ["LR: Sachin Tissera (Coach)", "Rudhesh Ram", "Savith Wijesundara", "Apoorva Jinadasa", "Adam Dhilshan", "Thananchayan Tharaniharan", "Shalem Sumanthiran (Coach)", "Rachel Cramer (Team Manager)"],
     "2025": ["LR: Nimansa Jayasundera", "Dihen Udumalagala", "Rudesh Ram", "Savith Wijesundara", "Akein Bandara", "Absent: T. Tharaniharan (Reserve)"],
     "2024": ["LR: Anielka Nallathamby (Reserve)", "Sarah Warnakulasuriya", "Savith Wijesundara", "Shalem Sumanthiran (Team Manager)", "Tamkeen Nawab (Coach)", "Chansol Park (Coach)", "Ammar Zaffarullah", "Afrah Athahurahman", "Thithira Jayakody"],
     "2023": ["LR Seated: Janul De Silva (Assistant Coach)", "Chanidu Ratnayake (Captain)", "Viren Beruwalage (Head Coach)", "Humaid Saleem (Technical Coach)", "LR Standing: Sanithma Jayasooriya", "Thithira Jayakody", "Ammar Zaffarullah (Reserve)", "Ashwin Laksumanage", "Afrah Athahurahman"],
@@ -59,7 +59,7 @@ const TEAM_MEMBERS = {
     "2019": ["LR: Rishane Dissanayake", "Rahul De Silva", "Treshan Fernando", "Erandi De Silva", "Maleeka Hassan", "Absent: Sanjit Dias (Coach)", "Chanidu Ratnayake (Reserve)"],
     "2018": ["LR: Kithmina Hewage (Team Manager)", "Shanya Sadanandan", "Shalem Sumanthiran (Captain)", "Avvayar De Mel", "Sahas Gunasekara", "Ashani Kottage", "Sarani Jayawadena (Coach)", "Absent: Rahul De Silva (Reserve)"],
     "2017": ["LR: Shalem Sumanthiran", "Anish Fonseka (Captain)", "Kithmina Hewage (Team Manager)", "Kavindra Senaratna", "Chetan Perara", "Devin Hewage (Coach)", "Avaayar De Mel", "Absent: Shanya Sadanandan (Reserve)"],
-    "2015": ["LR: Amrita", "Devin", "Tamara", "Sidath", "Eran", "Miriam"]
+    "2015": ["LR: Amrita Khandpur", "Devin Hewage", "Tamara Fernando (Team Manager/Coach)", "Sidath Samarasinghe", "Eran Fernando", "Miriam Alphonsus"]
 };
 
 // Border Beam Component
@@ -220,7 +220,7 @@ export default function NationalTeamCarousel() {
         if (relPos < -total / 2) relPos += total;
         const absPos = Math.abs(relPos);
         const isActive = relPos === 0;
-        
+
         const spreadVal = "min(45vw, 350px)";
         const xOffset = `${relPos} * ${spreadVal}`;
         const zOffset = absPos * -depth;
