@@ -1,6 +1,9 @@
 import React, { useRef, useEffect, useState, startTransition } from "react";
 import { useInView } from "framer-motion";
 import { Box, Typography } from "@mui/material";
+import rcLogo from '../assets/league/rc-logo.png';
+import lcLogo from '../assets/league/lc-logo.png';
+
 
 // Default props values
 const DEFAULT_PROPS = {
@@ -83,7 +86,9 @@ export default function LeagueCarousel() {
     useEffect(() => {
         // Dynamically load images from league folder
         const modules = import.meta.glob('../assets/league/*.{png,jpg,jpeg,svg}', { eager: true });
-        const loadedImages = Object.entries(modules).map(([path, mod]) => {
+        const loadedImages = Object.entries(modules)
+            .filter(([path]) => !path.includes('logo.png'))
+            .map(([path, mod]) => {
             const filename = path.split('/').pop().split('.')[0]; 
             // year-School name.jpg
             return {
@@ -95,16 +100,15 @@ export default function LeagueCarousel() {
         });
         
         // Add hardcoded placeholders for missing years
-        const PLACEHOLDER_IMG = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=";
         loadedImages.push({
             type: "image",
-            imageUrl: PLACEHOLDER_IMG,
+            imageUrl: rcLogo,
             title: "2020 League Champions",
             members: ["Royal College"]
         });
         loadedImages.push({
             type: "image",
-            imageUrl: PLACEHOLDER_IMG,
+            imageUrl: lcLogo,
             title: "2021 League Champions",
             members: ["Ladies College"]
         });
