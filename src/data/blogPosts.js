@@ -1,5 +1,8 @@
 import oldhamImage from '../assets/blog/oldham-cup.png';
 import newsletterPdf from './Newsletter_WIP_20260725_082547_0000_compressed.pdf';
+import vvidcImage from './thumbnail-vvidc.jpeg';
+import smndcImage from './thumbnail-smndc.jpeg';
+import newsletterImage from './thumbnail-newsletter.png';
 
 export const blogPosts = [
   {
@@ -28,10 +31,10 @@ The speaker tab proved no less interesting than the debates themselves, with som
 Congratulations to all debaters on their performance at VVIDC, and to the organizing committee for a well-run tournament!`,
     category: 'Tournaments',
     author: 'Debaters Council',
-    date: '2026-03-16',
+    date: '2026-07-26',
     readTime: '4 min',
-    image: 'https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&h=500&fit=crop',
-    featured: true,
+    image: vvidcImage,
+    featured: false,
   },
   {
     id: 7,
@@ -60,9 +63,9 @@ After an intense debate, the team from Trinity College ultimately took home the 
 Despite the conclusion of this tournament, novices have plenty more debating to look forward to, with the Debate Basics Bootcamp organized by the DC on the 26th of April, and the D. N. Wickramasinghe Novice Debating Championship organized by Ananda College taking place on the 15th of May. It will be certainly interesting to see how these budding new debaters and teams will adapt for their next performance.`,
     category: 'Tournaments',
     author: 'Debaters Council',
-    date: '2026-04-20',
+    date: '2026-07-26',
     readTime: '5 min',
-    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=500&fit=crop',
+    image: smndcImage,
     featured: false,
   },
   {
@@ -87,20 +90,20 @@ With preparations well underway for the World Schools Debating Championship (WSD
 `,
     category: 'Achievements',
     author: 'Debaters Council',
-    date: '2026-04-20',
+    date: '2026-07-26',
     readTime: '3 min',
     image: oldhamImage,
-    featured: false,
+    featured: true,
   },
   {
     id: 9,
     title: 'Newsletter from the Archives',
-    excerpt: 'Catch up on all the latest updates, achievements, and upcoming events in our July 2026 newsletter.',
+    excerpt: 'Catch up on a recap from last year.',
     category: 'Announcements',
     author: 'Debaters Council',
-    date: '2025-01-01',
+    date: '2026-01-30',
     readTime: '10 min',
-    image: 'https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=800&h=500&fit=crop',
+    image: newsletterImage,
     featured: false,
     pdf: newsletterPdf
   }
