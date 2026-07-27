@@ -49,7 +49,7 @@ const DEFAULT_PROPS = {
 };
 
 const TEAM_MEMBERS = {
-    "2026": ["LR: Sachin Tissera (Coach)", "Rudhesh Ram", "Savith Wijesundara", "Apoorva Jinadasa", "Adam Dhilshan", "Thananchayan Tharaniharan", "Shalem Sumanthiran (Coach)", "Rachel Cramer (Team Manager)"],
+    "2026": ["LR: Sachin Tissera (Coach)", "Rudhesh Ram", "Savith Wijesundara", "Apoorva Jinadasa", "Adam Dhilshan", "Thananchayan Tharaniharan", "Shalem Sumanthiran (Coach)", "Rachel Cramer (Team Manager)", "Absent: Thahira Saheed (Reserve)"],
     "2025": ["LR: Nimansa Jayasundera", "Dihen Udumalagala", "Rudesh Ram", "Savith Wijesundara", "Akein Bandara", "Absent: T. Tharaniharan (Reserve)"],
     "2024": ["LR: Anielka Nallathamby (Reserve)", "Sarah Warnakulasuriya", "Savith Wijesundara", "Shalem Sumanthiran (Team Manager)", "Tamkeen Nawab (Coach)", "Chansol Park (Coach)", "Ammar Zaffarullah", "Afrah Athahurahman", "Thithira Jayakody"],
     "2023": ["LR Seated: Janul De Silva (Assistant Coach)", "Chanidu Ratnayake (Captain)", "Viren Beruwalage (Head Coach)", "Humaid Saleem (Technical Coach)", "LR Standing: Sanithma Jayasooriya", "Thithira Jayakody", "Ammar Zaffarullah (Reserve)", "Ashwin Laksumanage", "Afrah Athahurahman"],
@@ -149,6 +149,7 @@ export default function NationalTeamCarousel() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const dragStartX = useRef(0);
+    const dragActive = useRef(false);
     const timerRef = useRef(null);
     const containerRef = useRef(null);
     const isInView = useInView(containerRef, { once: false, amount: 0.5 });
@@ -195,21 +196,20 @@ export default function NationalTeamCarousel() {
 
     const handlePointerDown = e => {
         dragStartX.current = e.clientX;
-        startTransition(() => {
-            setIsDragging(true);
-        });
+        dragActive.current = true;
+        setIsDragging(true);
     };
 
     const handlePointerUp = e => {
-        if (!isDragging) return;
+        if (!dragActive.current) return;
+        dragActive.current = false;
+        setIsDragging(false);
+        
         const diff = e.clientX - dragStartX.current;
         if (Math.abs(diff) > 50) {
             if (diff > 0) prevSlide();
             else nextSlide();
         }
-        startTransition(() => {
-            setIsDragging(false);
-        });
     };
 
     const getSlideStyle = index => {
@@ -358,7 +358,8 @@ export default function NationalTeamCarousel() {
                                         height: "100%",
                                         objectFit: "contain",
                                         objectPosition: "center",
-                                        display: "block"
+                                        display: "block",
+                                        padding: item.title === "Team 2022" ? "5%" : "0"
                                     }}
                                 />
                             </div>
