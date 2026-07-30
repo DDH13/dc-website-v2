@@ -9,7 +9,7 @@ import { blogPosts } from '../../data/blogPosts';
 function ArticlePage() {
     const { id } = useParams();
     const navigate = useNavigate();
-    
+
     // Find post by id, parse id string to integer
     const post = blogPosts.find(p => p.id === parseInt(id, 10));
 
@@ -31,8 +31,8 @@ function ArticlePage() {
                 <img src={post.image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <Box sx={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, #121212 0%, rgba(18,18,18,0.7) 40%, transparent 100%)' }} />
                 <Box sx={{ position: 'absolute', top: 30, left: { xs: 20, md: 40 } }}>
-                    <Button 
-                        startIcon={<ArrowBackIcon />} 
+                    <Button
+                        startIcon={<ArrowBackIcon />}
                         onClick={() => navigate('/blog')}
                         sx={{ color: '#fff', textTransform: 'none', fontFamily: 'Montserrat', fontWeight: 600, backgroundColor: 'rgba(0,0,0,0.5)', '&:hover': { backgroundColor: 'rgba(0,0,0,0.8)' } }}
                     >
@@ -46,7 +46,7 @@ function ArticlePage() {
                 <Box sx={{ display: 'inline-block', p: '6px 16px', backgroundColor: '#8B0000', color: '#fff', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', mb: 2, letterSpacing: '1px' }}>
                     {post.category}
                 </Box>
-                
+
                 <Typography variant="h1" sx={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: { xs: '2.5rem', md: '3.5rem' }, mb: 4, color: '#fff', lineHeight: 1.2 }}>
                     {post.title}
                 </Typography>
