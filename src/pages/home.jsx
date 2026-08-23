@@ -1,6 +1,7 @@
 import React from 'react';
 import AutoCarousel from '../components/AutoCarousel';
 import AnimatedPlasma from '../components/AnimatedPlasma';
+import QuickLinks from '../components/QuickLinks';
 import TextClipReveal from '../components/TextClipReveal';
 import RollingStats from '../components/RollingStats';
 import boardPic from '../assets/boardpic.png';
@@ -87,6 +88,9 @@ function HomePage() {
                     </Box>
                 </Box>
             </Box>
+
+            {/* === SECTION 1.5: QUICK LINKS === */}
+            <QuickLinks />
 
             {/* === SECTION 2: ABOUT US === */}
             {/* === SECTION 2.1: ABOUT US (TEXT) === */}

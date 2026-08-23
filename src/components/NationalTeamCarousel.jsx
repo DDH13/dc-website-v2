@@ -12,18 +12,20 @@ const isFilled = value => {
 };
 
 // Strips unfilled fields, returning null when a year has nothing worth showing yet.
+// A result row survives if it has a placing or a tournament (either alone still reads).
 const cleanAchievements = raw => {
     if (!raw) return null;
     const cleaned = {
-        championship: isFilled(raw.championship) ? raw.championship.trim() : null,
-        host: isFilled(raw.host) ? raw.host.trim() : null,
-        result: isFilled(raw.result) ? raw.result.trim() : null,
-        record: isFilled(raw.record) ? raw.record.trim() : null,
+        results: (raw.results || [])
+            .map(r => ({
+                placing: isFilled(r?.placing) ? r.placing.trim() : null,
+                tournament: isFilled(r?.tournament) ? r.tournament.trim() : null
+            }))
+            .filter(r => r.placing || r.tournament),
         speakerAwards: (raw.speakerAwards || []).filter(isFilled).map(s => s.trim()),
         highlights: (raw.highlights || []).filter(isFilled).map(s => s.trim())
     };
-    const hasContent = cleaned.championship || cleaned.host || cleaned.result || cleaned.record
-        || cleaned.speakerAwards.length || cleaned.highlights.length;
+    const hasContent = cleaned.results.length || cleaned.speakerAwards.length || cleaned.highlights.length;
     return hasContent ? cleaned : null;
 };
 
@@ -557,57 +559,55 @@ export default function NationalTeamCarousel() {
                             borderTop: '1px solid rgba(255,255,255,0.1)',
                             display: 'flex',
                             flexDirection: 'column',
-                            gap: '10px',
+                            gap: '12px',
                             textAlign: 'left'
                         }}>
-                            {(currentAchievements.championship || currentAchievements.host) && (
-                                <Typography sx={{
-                                    color: '#ff4d4d',
-                                    fontFamily: 'Montserrat, sans-serif',
-                                    fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
-                                    fontWeight: 800,
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '2px'
-                                }}>
-                                    {[currentAchievements.championship, currentAchievements.host].filter(Boolean).join(' · ')}
-                                </Typography>
-                            )}
-
-                            {(currentAchievements.result || currentAchievements.record) && (
-                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                                    {[
-                                        { label: 'Result', value: currentAchievements.result },
-                                        { label: 'Prelims', value: currentAchievements.record }
-                                    ].filter(stat => stat.value).map(stat => (
-                                        <Box key={stat.label} sx={{
-                                            display: 'flex',
-                                            alignItems: 'baseline',
-                                            gap: '8px',
-                                            padding: '6px 14px',
-                                            borderRadius: '999px',
-                                            background: 'rgba(139, 0, 0, 0.25)',
-                                            border: '1px solid rgba(255, 77, 77, 0.25)'
-                                        }}>
-                                            <Typography component="span" sx={{
-                                                color: '#bbb',
-                                                fontFamily: 'Montserrat, sans-serif',
-                                                fontSize: '0.7rem',
-                                                fontWeight: 700,
-                                                textTransform: 'uppercase',
-                                                letterSpacing: '1px'
-                                            }}>
-                                                {stat.label}
-                                            </Typography>
-                                            <Typography component="span" sx={{
-                                                color: '#FFFFFF',
-                                                fontFamily: 'Montserrat, sans-serif',
-                                                fontSize: 'clamp(0.8rem, 2.2vw, 0.95rem)',
-                                                fontWeight: 700
-                                            }}>
-                                                {stat.value}
-                                            </Typography>
-                                        </Box>
-                                    ))}
+                            {currentAchievements.results.length > 0 && (
+                                <Box>
+                                    <Typography sx={{
+                                        color: '#ff4d4d',
+                                        fontFamily: 'Montserrat, sans-serif',
+                                        fontSize: 'clamp(0.7rem, 2vw, 0.75rem)',
+                                        fontWeight: 800,
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '2px',
+                                        marginBottom: '8px'
+                                    }}>
+                                        Achievements
+                                    </Typography>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                        {currentAchievements.results.map((res, idx) => (
+                                            <Box key={idx} sx={{ display: 'flex', alignItems: 'baseline', gap: '10px' }}>
+                                                <Box sx={{
+                                                    width: '6px',
+                                                    height: '6px',
+                                                    borderRadius: '50%',
+                                                    background: '#8B0000',
+                                                    flexShrink: 0,
+                                                    transform: 'translateY(-2px)'
+                                                }} />
+                                                <Typography sx={{
+                                                    fontFamily: 'Montserrat, sans-serif',
+                                                    fontSize: 'clamp(0.8rem, 2.2vw, 0.95rem)',
+                                                    lineHeight: 1.6
+                                                }}>
+                                                    {res.placing && (
+                                                        <Box component="span" sx={{ color: '#FFFFFF', fontWeight: 700 }}>
+                                                            {res.placing}
+                                                        </Box>
+                                                    )}
+                                                    {res.placing && res.tournament && (
+                                                        <Box component="span" sx={{ color: '#666', fontWeight: 500 }}>{' · '}</Box>
+                                                    )}
+                                                    {res.tournament && (
+                                                        <Box component="span" sx={{ color: '#BDBDBD', fontWeight: 500 }}>
+                                                            {res.tournament}
+                                                        </Box>
+                                                    )}
+                                                </Typography>
+                                            </Box>
+                                        ))}
+                                    </Box>
                                 </Box>
                             )}
 
