@@ -1,126 +1,148 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import { Link as RouterLink } from 'react-router-dom';
-import SchoolIcon from '@mui/icons-material/School';
-import GroupsIcon from '@mui/icons-material/Groups';
-import EventIcon from '@mui/icons-material/Event';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
+import BandLabel from './BandLabel';
 
 // Task-oriented entry points, sitting directly under the hero. The home page is
-// otherwise five full-height prose sections with nothing to click, so a visitor
-// looking for "how do I join" or "how do I run a tournament" had nowhere to go.
+// otherwise prose sections with nothing to click, so a visitor looking for "how
+// do I join" or "how do I run a tournament" had nowhere to go.
+//
+// These are rows, not cards. A card grid gives four items equal visual weight
+// and forces every one to repeat "Learn more"; rows let each item state its own
+// audience in the left column, which is the thing a visitor is actually sorting
+// by. Rows also stack honestly on mobile instead of collapsing a 4-up grid.
 const LINKS = [
     {
-        title: 'Improve as a Debater',
-        description: 'Workshop recordings and motion debriefs from our coaches.',
-        to: '/videos',
-        icon: SchoolIcon
+        key: 'If you debate',
+        title: 'Workshops and lectures',
+        description: 'Recorded sessions from our coaches, and debriefs on past motions.',
+        to: '/videos'
     },
     {
-        title: 'How We Select Teams',
-        description: 'The National Pool, trials, and the development squad.',
-        to: '/information',
-        icon: GroupsIcon
+        key: 'If you’re trying out',
+        title: 'How national teams are picked',
+        description: 'The National Pool, trials, and how the squad for Worlds is chosen.',
+        to: '/information'
     },
     {
-        title: 'Organise a Tournament',
-        description: 'Endorsement, invitations, motions, and tabulation.',
-        to: '/tournament-essentials',
-        icon: EventIcon
+        key: 'If you run tournaments',
+        title: 'Organising and endorsement',
+        description: 'Invitations, motions, adjudication, and tabulation, with Council endorsement.',
+        to: '/tournament-essentials'
     },
     {
-        title: 'Guide to WSDC',
-        description: 'The format Sri Lankan school debating is built on.',
-        to: '/guide-to-wsdc',
-        icon: MenuBookIcon
+        key: 'If you’re new',
+        title: 'How the format works',
+        description: 'World Schools style: three speakers a side, eight minutes, points of information.',
+        to: '/guide-to-wsdc'
     }
 ];
 
 const QuickLinks = () => (
-    <Box sx={{
-        width: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        borderTop: '1px solid rgba(255,255,255,0.1)',
-        borderBottom: '1px solid rgba(255,255,255,0.1)',
-        py: { xs: 6, md: 9 },
-        px: { xs: 3, md: 6 }
-    }}>
-        <Box sx={{ maxWidth: '1300px', mx: 'auto' }}>
-            <Typography sx={{
-                fontFamily: 'Montserrat',
-                fontSize: '0.85rem',
-                fontWeight: 800,
-                textTransform: 'uppercase',
-                letterSpacing: '2px',
-                color: '#888',
-                textAlign: 'center',
-                mb: { xs: 4, md: 5 }
-            }}>
-                Where do you want to start?
-            </Typography>
+    <Box component="section" className="dc-band dc-band--limewash" aria-labelledby="dc-start">
+        <Box className="dc-band__inner">
+            <BandLabel accent="var(--dc-teak)">Start here</BandLabel>
 
-            <Box sx={{
-                display: 'grid',
-                gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: 'repeat(4, 1fr)' },
-                gap: { xs: 2.5, md: 3 }
-            }}>
-                {LINKS.map(({ title, description, to, icon: Icon }) => (
+            <Box
+                component="h2"
+                id="dc-start"
+                className="dc-display"
+                sx={{
+                    m: 0,
+                    mb: { xs: 4, md: 6 },
+                    fontSize: { xs: '1.9rem', md: '2.9rem' },
+                    lineHeight: 1.02,
+                    color: 'var(--dc-ink)'
+                }}
+            >
+                Four ways in.
+            </Box>
+
+            <Box sx={{ borderTop: '1px solid rgba(122, 74, 43, 0.28)' }}>
+                {LINKS.map(({ key, title, description, to }) => (
                     <Box
                         key={to}
                         component={RouterLink}
                         to={to}
                         sx={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            p: { xs: 2.5, md: 3 },
-                            background: '#1a1a1a',
-                            border: '1px solid #333',
-                            borderRadius: '12px',
+                            display: 'grid',
+                            gridTemplateColumns: { xs: '1fr', md: '15rem minmax(0, 1fr) 2.5rem' },
+                            alignItems: { md: 'baseline' },
+                            columnGap: { md: 4 },
+                            rowGap: { xs: 1, md: 0 },
+                            px: { xs: 0, md: 2 },
+                            py: { xs: 3, md: 3.5 },
+                            borderBottom: '1px solid rgba(122, 74, 43, 0.28)',
                             textDecoration: 'none',
-                            transition: 'all 0.2s',
-                            '&:hover': {
-                                background: '#222',
-                                borderColor: '#8B0000',
-                                transform: 'translateY(-4px)',
-                                boxShadow: '0 8px 24px rgba(0,0,0,0.4)'
+                            color: 'var(--dc-ink)',
+                            transition: 'background-color 0.18s ease, color 0.18s ease, padding-left 0.18s ease',
+                            '&:hover, &:focus-visible': {
+                                backgroundColor: 'var(--dc-red)',
+                                color: '#FFFFFF',
+                                pl: { md: 3 }
                             },
-                            '&:hover .quick-arrow': { color: '#ff4d4d' }
+                            // The row is the link, so the focus ring has to be on
+                            // the row and has to survive the red hover state.
+                            '&:focus-visible': {
+                                outline: '3px solid var(--dc-ink)',
+                                outlineOffset: '-3px'
+                            },
+                            '&:hover .dc-row-key, &:focus-visible .dc-row-key': { opacity: 1, color: '#FFFFFF' },
+                            '&:hover .dc-row-desc, &:focus-visible .dc-row-desc': { opacity: 0.92 },
+                            '&:hover .dc-row-arrow, &:focus-visible .dc-row-arrow': { opacity: 1, transform: 'translateX(4px)' }
                         }}
                     >
-                        <Icon sx={{ fontSize: '2rem', color: '#8B0000', mb: 1.5 }} />
-                        <Typography sx={{
-                            fontFamily: 'Montserrat',
-                            fontSize: '1.05rem',
-                            fontWeight: 700,
-                            color: '#fff',
-                            mb: 1,
-                            lineHeight: 1.3
-                        }}>
-                            {title}
-                        </Typography>
-                        <Typography sx={{
-                            fontFamily: 'Montserrat',
-                            fontSize: '0.9rem',
-                            color: '#aaa',
-                            lineHeight: 1.6,
-                            mb: 2
-                        }}>
-                            {description}
-                        </Typography>
-                        <Typography
-                            className="quick-arrow"
+                        <Box
+                            className="dc-mono dc-row-key"
                             sx={{
-                                fontFamily: 'Montserrat',
-                                fontSize: '0.8rem',
-                                fontWeight: 700,
-                                color: '#8B0000',
-                                mt: 'auto',
-                                transition: 'color 0.2s'
+                                fontSize: { xs: '0.62rem', md: '0.68rem' },
+                                color: 'var(--dc-teak)',
+                                transition: 'color 0.18s ease, opacity 0.18s ease',
+                                pt: { md: '0.35em' }
                             }}
                         >
-                            LEARN MORE →
-                        </Typography>
+                            {key}
+                        </Box>
+
+                        <Box>
+                            <Box
+                                className="dc-display"
+                                sx={{
+                                    fontSize: { xs: '1.28rem', md: '1.6rem' },
+                                    lineHeight: 1.14,
+                                    mb: 0.9
+                                }}
+                            >
+                                {title}
+                            </Box>
+                            <Box
+                                className="dc-serif dc-row-desc"
+                                sx={{
+                                    fontSize: { xs: '0.98rem', md: '1.05rem' },
+                                    lineHeight: 1.55,
+                                    opacity: 0.72,
+                                    maxWidth: '68ch',
+                                    transition: 'opacity 0.18s ease'
+                                }}
+                            >
+                                {description}
+                            </Box>
+                        </Box>
+
+                        <Box
+                            aria-hidden="true"
+                            className="dc-row-arrow"
+                            sx={{
+                                display: { xs: 'none', md: 'block' },
+                                fontSize: '1.4rem',
+                                lineHeight: 1,
+                                opacity: 0.3,
+                                justifySelf: 'end',
+                                transition: 'opacity 0.18s ease, transform 0.18s ease'
+                            }}
+                        >
+                            &rarr;
+                        </Box>
                     </Box>
                 ))}
             </Box>
